@@ -2,7 +2,32 @@ var express = require('express');
 var router = express.Router();
 var path = require('path');
 var formidable = require('formidable');
+var vibrant = require('node-vibrant');
 var fs = require('fs');
+var color = require('dominant-color');
+var palette = require('image-palette');
+var Color = require('color');
+var imgPath = './public/images/a.png';
+var temp=[];
+router.route('/count').get( function (req, res) {
+    var colors = palette(imgPath, function (colors) {
+        temp=colors[0][1]+colors[0][0]+colors[0][2];
+        temp=colors;
+        console.log(temp);
+    });
+    res.send({
+        state:"ok",
+        count: temp
+    });
+})
+    .post(function(req,res){
+    temp=req.body.count;
+    console.log(temp);
+    res.send({
+        state: "ok"
+    });
+});
+
 router.route('/posts')
     .post(function (req, res) {
         var form = new formidable.IncomingForm();
@@ -21,8 +46,4 @@ router.route('/posts')
         form.parse(req);
         res.end("upload complete");
     });
-router.route('/').post(function (req, res) {
-    console.log(req.body.check);
-    res.send();
-});
 module.exports = router;
