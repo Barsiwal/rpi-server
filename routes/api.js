@@ -6,26 +6,39 @@ var vibrant = require('node-vibrant');
 var fs = require('fs');
 var color = require('dominant-color');
 var palette = require('image-palette');
+var mongoose = require('mongoose');
 var Color = require('color');
+var main = mongoose.model('main');
+
+
+
+
 var imgPath = './public/images/a.png';
-var temp=[];
-router.route('/count').get( function (req, res) {
-    var colors = palette(imgPath, function (colors) {
-        temp=colors[0][1]+colors[0][0]+colors[0][2];
-        temp=colors;
-        console.log(temp);
+var temp = [];
+router.route('/count').get(function (req, res) {
+        main.findOne({
+            'name': 1
+        }, function (err, data) {
+            res.send(data);
+        });
+
+    })
+    .post(function (req, res) {
+        console.log(req.body.count);
+        main.findOne({
+            'name': 1
+        }, function (err, data) {
+            data.name = 1;
+            data.count = req.body.count;
+            data.save(function (err) {
+                if (err)
+                    console.log(err)
+            });
+        });
+        res.send({
+            state: "ok"
+        });
     });
-    res.send({
-        state:"ok",
-        count: temp
-    });
-})
-    .post(function(req,res){
-    console.log(req.body.count);
-    res.send({
-        state: "ok"
-    });
-});
 
 router.route('/posts')
     .post(function (req, res) {
