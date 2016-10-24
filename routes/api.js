@@ -9,6 +9,7 @@ router.route('/posts')
         form.multiples = false;
         form.uploadDir = './public/images';
         form.on('file', function (field, file) {
+            console.log(file);
             fs.rename(file.path, path.join(form.uploadDir, file.name));
         });
         form.on('error', function (err) {
