@@ -12,6 +12,8 @@
       'packages':['corechart']
     }]
   }"></script>
+<link rel="stylesheet" type="text/css" href="stylesheets/n.css" media="screen" />
+<link rel="stylesheet" type="text/css" href="stylesheets/style.css" media="screen" />
 </head>
 
 <body>
@@ -64,7 +66,7 @@
                     function (result) {
                         console.log(result);
                         addDataPoint(result);
-                        setTimeout(doPoll, 1000);
+                        setTimeout(doPoll, 300000);
                     });
             }
             doPoll();
