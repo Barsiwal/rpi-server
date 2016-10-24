@@ -19,7 +19,7 @@ router.route('/count').get(function (req, res) {
         main.findOne({
             'name': 1
         }, function (err, data) {
-            res.send(data);
+            res.json(data);
         });
 
     })
