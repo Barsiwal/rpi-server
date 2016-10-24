@@ -21,8 +21,7 @@ router.route('/count').get( function (req, res) {
     });
 })
     .post(function(req,res){
-    temp=req.body.count;
-    console.log(temp);
+    console.log(req.body.count);
     res.send({
         state: "ok"
     });
