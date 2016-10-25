@@ -56,13 +56,13 @@
 
             function doPoll() {
                 $.ajax({
-                    url: 'http://ec2-54-191-127-185.us-west-2.compute.amazonaws.com:3001/count',
+                    url: 'http://ec2-54-214-136-144.us-west-2.compute.amazonaws.com:3001/count',
                     dataType: "jsonp", // <== JSON-P request
                     success: function (data) {
                         console.log(data)
                     }
                 });
-                $.getJSON('http://ec2-54-191-127-185.us-west-2.compute.amazonaws.com:3001/count',
+                $.getJSON('http://ec2-54-214-136-144.us-west-2.compute.amazonaws.com:3001/count',
                     function (result) {
                         console.log(result);
                         addDataPoint(result);
